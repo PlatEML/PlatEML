@@ -2,7 +2,7 @@
 
 Evolutionary machine learning (EML) algorithm is an emerging domain with plenty of existing results. In order to facilitate the development of EML, we developed a platform to allow anyone to use EML algorithms with no code.
 
-## Introduction
+## Algorithms
 
 This package is mainly focus on providing a user-friendly platform for EML techniques. It includes following of algorithms:
 
