@@ -89,14 +89,14 @@ H5, H3 {
     width: 100%;
 }
 
-#patient_volume_card, #wait_time_card, #training_data_card, #result_card, #model_card {
+#patient_volume_card, #wait_time_card, #training_data_card, #result_card, #model_card, #test_card {
     background-color: #FFFFFF;
     padding: 1rem;
     margin: auto;
     margin-top: 20px;
 }
 
-#patient_volume_card > b, #wait_time_card > b, #training_data_card > b, #result_card > b, #model_card > b {
+#patient_volume_card > b, #wait_time_card > b, #training_data_card > b, #result_card > b, #model_card > b, #test_card > b{
     line-height: 2.5;
 }
 

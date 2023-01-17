@@ -22,6 +22,18 @@ from sklearn.tree import DecisionTreeRegressor
 
 from .rm_meda import RM_MEDA
 
+translate = {
+    "chinese":
+        {
+            "Feature_Selection_Program": "特征选择方案",
+            "R2_Score": "R2分数",
+        },
+    "english":
+        {
+            "Feature_Selection_Program": "Feature Selection Program",
+            "R2_Score": "R2 Score",
+        }
+}
 
 class FeatureSelectionProblem(Problem):
 
@@ -144,7 +156,7 @@ class MOEASelector(SelectorMixin, BaseEstimator):
         return my_base64_jpgData
 
 
-def feature_selection_utils(pop_size, generation, global_data, operator_select, state):
+def feature_selection_utils(pop_size, generation, global_data, operator_select, state, language):
     dt = DecisionTreeRegressor()
     x, y = np.array(global_data)[:, :-1], np.array(global_data)[:, -1]
     selector = MOEASelector(dt, operator_select, pop_size, generation, state)
@@ -153,8 +165,8 @@ def feature_selection_utils(pop_size, generation, global_data, operator_select, 
     df = pd.DataFrame([
         selection_result.apply(lambda row: ','.join(row.values.astype(str)), axis=1),
         selector.pf[:, 1]
-    ], index=['特征选择方案', 'R2分数']).T
-    df = df.sort_values(['R2分数'], ascending=False)
+    ], index=[f"{translate[language]['Feature_Selection_Program']}", f"{translate[language]['R2_Score']}"]).T
+    df = df.sort_values([f"{translate[language]['R2_Score']}"], ascending=False)
     return df, selector.plot_figure()
 
 
