@@ -4,10 +4,15 @@
 
 ## 算法
 
-这个软件包主要是为EML技术提供一个用户友好的平台。它包括以下算法：
+这个软件包主要是为EML技术提供一个对用户友好的平台。它包括以下算法：
 
 * 演化特征构造
+    
     * [**Evolutionary Forest**](https://ieeexplore.ieee.org/document/9656554)
+    
+      [论文解析](https://www.zhihu.com/question/367337608/answer/2287992641)
+    
+      [开源代码（66 starred）](https://github.com/hengzhe-zhang/EvolutionaryForest)
 * 演化特征选择
     * [**NSGA2**](https://ieeexplore.ieee.org/document/996017)
     * [**RM-MEDA**](https://ieeexplore.ieee.org/document/4358761)
@@ -16,7 +21,12 @@
     * [C-TAEA](https://ieeexplore.ieee.org/document/8413136)
 * 符号回归
   * [PS-Tree](https://www.sciencedirect.com/science/article/pii/S2210650222000335)
-  * gplearn
+  
+    [论文解析](https://zhuanlan.zhihu.com/p/597166524)
+  
+    [开源代码](https://github.com/hengzhe-zhang/PS-Tree)
+  
+  * [gplearn](https://github.com/trevorstephens/gplearn)
 
 ## 主界面
 
@@ -32,11 +42,17 @@
 
 默认数据集是Boston房价，默认的测试集为训练集。
 
+### 语言
+
+中英文自由切换。
+
 ### 任务类型
 
 主要用四类：可解释建模、PS-Tree、演化森林、特征选择。
 
 #### **可解释建模：**
+
+本项功能的实现依赖于gplearn开源代码库。
 
 左侧可选择演化代数、种群大小、锦标赛规模、运算符。
 
@@ -66,24 +82,27 @@
 右侧显示：
 
 - 其它内容同上
-- 可视化展示：显示演化森林模型、构造的特征及重要性，可以选择top特征训练其他模型，展示训练结果。
+- 可视化展示：显示演化森林模型、构造的特征及重要性（**重要性是决策树自动给出的**），可以选择top特征训练其他模型，展示训练结果
 
 ![evolutionary-forest](./figure/evolutionary-forest.png)
 
 #### 特征选择
 
-左侧可选择演化代数、种群大小、多目标算子。
+左侧可选择演化代数、种群大小、多目标算子、载入演化森林特征。
+
+- 载入演化森林特征：载入演化森林训练生成的新特征，自动选择特征方案，方便用户使用（注意，使用前需先用演化森林生成新特征）
 
 右侧显示：
 
-- 训练结果为选择的特征
+- 训练结果为选择的特征方案
 - 可视化展示：帕累托前沿图
 
 ![feature-selection](./figure/feature-selection.png)
 
 ### 多目标算子
 
-NSGA-2、NSGA-3、Lexicase、IBEA、SPEA2
+- PS-Tree：NSGA-2、NSGA-3、Lexicase、IBEA、SPEA2
+- 特征选择：NSGA-2、NSGA-3、MOEA/D、RM-MEDA、C-TAEA
 
 ### 训练结果
 
@@ -95,7 +114,7 @@ NSGA-2、NSGA-3、Lexicase、IBEA、SPEA2
 
 用户可上传测试数据，格式要求与上传训练数据一致。
 
-如果上传的是没有实际值的数据集，那么就预测结果，如果是有实际值，那么就预测结果并计算偏差。
+如果上传的是没有实际值的数据集，那么就预测结果；如果是有实际值，那么就预测结果并计算偏差。
 
 ### 可视化展示
 

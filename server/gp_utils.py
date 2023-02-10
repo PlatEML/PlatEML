@@ -133,7 +133,7 @@ def evolutionary_forest_predict(pop_size, gen, tournament_size, data, operator_s
 
     fig, axes = plt.subplots(nrows=1, ncols=min(5, len(gp.hof)), figsize=(30, 6))
     for index, h in enumerate(gp.hof):
-        plot_tree(h.pipe['Ridge'], max_depth=0, filled=True, ax=axes[index])
+        plot_tree(h.pipe['Ridge'], max_depth=1, filled=True, ax=axes[index])
 
     # 重要特征转Base-64
     my_stringIObytes = io.BytesIO()

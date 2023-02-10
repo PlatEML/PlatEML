@@ -87,7 +87,10 @@ translate = {
             "Download_Test_Results": "下载测试结果",
             "Effect_of_Feature_Construction": "特征构建的效果图",
             "Loading_New_Features": "载入新特征",
-            "Error_no_ef": "错误: 请先使用演化森林训练出新的特征"
+            "Error_no_ef": "错误: 请先使用演化森林训练出新的特征",
+            "Interpretable_Machine": "可解释机器学习建模系统",
+            "Chinese": "中文",
+            "English": "英文",
         },
     "english":
         {
@@ -128,7 +131,10 @@ translate = {
             "Download_Test_Results": "Download Test Results",
             "Effect_of_Feature_Construction": "Effect of Feature Construction",
             "Loading_New_Features": "Loading New Features",
-            "Error_no_ef": "Error: Please train new features using evolutionary forest first"
+            "Error_no_ef": "Error: Please train new features using evolutionary forest first",
+            "Interpretable_Machine": "Interpretable Machine Learning Modeling System",
+            "Chinese": "Chinese",
+            "English": "English",
         }
 }
 
@@ -140,12 +146,13 @@ def description_card(session_id):
     return html.Div(
         id="description-card",
         children=[
-            html.H5("ECNU"),
-            html.H3(children="可解释机器学习建模系统", style={'text-align': 'left'}),
-            html.Div(
-                id="intro",
-                children=translate[global_dict[session_id]['language']]['Parameter_Control_Panel'],
-            ),
+            # html.H5("ECNU"),
+            # html.H3(children=translate[global_dict[session_id]['language']]['Interpretable_Machine'], style={'text-align': 'left'}),
+            html.H6(translate[global_dict[session_id]['language']]['Parameter_Control_Panel'], style={'font-weight': 'bold'}),
+            # html.Div(
+            #     id="intro",
+            #     children=translate[global_dict[session_id]['language']]['Parameter_Control_Panel'],
+            # ),
         ],
     )
 
@@ -231,13 +238,14 @@ def generate_control_card(session_id):
             html.Br(),
             html.P(children=translate[global_dict[session_id]['language']]['Language']),
             html.Div(
-                dbc.Container(
+                    # html.Div()
                     dbc.Row(
                     [
-                        dbc.Col(width=6, children=html.Button(id="chinese", children="中文", n_clicks=0)),
-                        dbc.Col(width=6, children=html.Button(id="english", children="English", n_clicks=0))
-                    ]),
-                )
+                        dbc.Col(width=6, children=html.Button(id="chinese", children=translate[global_dict[session_id]['language']]['Chinese'], n_clicks=0)),
+                        dbc.Col(width=6, children=html.Button(id="english", children=translate[global_dict[session_id]['language']]['English'], n_clicks=0))
+                    ],
+                        justify='start'
+                    ),
             ),
             html.Br(),
             html.P(children=translate[global_dict[session_id]['language']]['Task_Type']),
@@ -306,12 +314,17 @@ def server_layout():
 def server_layout_page(pathname, session_id):
     main_page = [html.Div(
                 # Banner
-                [html.Div(
-                    id="banner",
-                    className="banner",
-                    children=[html.Img(src=app.get_asset_url("plotly_logo.png"))],
-                ),
+                [
+                # html.Div(
+                # id="banner",
+                # className="banner",
+                # children=[html.Img(src=app.get_asset_url("plotly_logo.png"))],
+                # ),
+                html.H4(children=f"ECNU {translate[global_dict[session_id]['language']]['Interpretable_Machine']}",
+                        style={'text-align': 'center', 'font-weight': 'bold'}),
+
                 # Left column
+                html.Hr(),
                 html.Div(
                     id="left-column",
                     # className="four columns",
