@@ -469,6 +469,7 @@ def update_output(n_clicks, session_id, generation, pop_size, tournament_size, o
             elif task_type == 'evolutionary-forest':
                 data, base64_datas, train_infos, gp = evolutionary_forest_predict(pop_size, generation, tournament_size,
                                                                               global_data, moea_operator_select, state, global_dict[session_id]['language'])
+                global_dict[session_id]['gp'] = gp
             training_infos = {
                 'data': data,
                 'base64_datas': base64_datas,
@@ -499,7 +500,7 @@ def update_output(n_clicks, session_id, generation, pop_size, tournament_size, o
                                                  'max-height': '400px',
                                                  'max-width': '100%'})])], ter_upload)
             elif task_type == 'evolutionary-forest':
-                r = global_dict[session_id]['training_infos']['gp']
+                r = global_dict[session_id]['gp']
                 code_importance_dict = get_feature_importance(r, simple_version=False)
                 names, importance = list(code_importance_dict.keys()), list(code_importance_dict.values())
                 feature_importance = np.array(importance)
@@ -747,7 +748,7 @@ def download(file):
 def check_list_output(clicks, value, session_id):
     if clicks > 0:
         fi_df = global_dict[session_id]['fi_df']
-        r = global_dict[session_id]['training_infos']['gp']
+        r = global_dict[session_id]['gp']
         feature_dataframe = fi_df.iloc[list(value)]
         x = global_dict[session_id]['global_data'].iloc[:, :-1]
         y = global_dict[session_id]['global_data'].iloc[:, -1]
@@ -798,7 +799,7 @@ def feature_table_display(clicks, session_id):
 
             #以下是为了得到新的特征值集合
             fi_df = global_dict[session_id]['fi_df']
-            r = global_dict[session_id]['training_infos']['gp']
+            r = global_dict[session_id]['gp']
             x = global_dict[session_id]['global_data'].iloc[:, :-1]
             y = global_dict[session_id]['global_data'].iloc[:, -1]
             xx = r.x_scaler.transform(x)
