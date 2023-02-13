@@ -577,8 +577,14 @@ def update_output(n_clicks, session_id, generation, pop_size, tournament_size, o
             global_data = global_dict[session_id]['global_data']
             if 'new_feature' in global_dict[session_id]:
                 global_data = global_dict[session_id]['new_feature']
+
             pf_data, pf_figure = feature_selection_utils(pop_size, generation, global_data, moea_operator_select,
                                                          state, global_dict[session_id]['language'])
+            if 'new_feature' in global_dict[session_id]:
+                global_dict[session_id].pop('feature_table')
+                global_dict[session_id].pop('new_feature')
+                # 每次载入后，都将这些特征删除，否则影响下一次载入
+
             print('Task finished!')
             training_infos = {
                 'data': pf_data,
@@ -811,6 +817,8 @@ def feature_table_display(clicks, session_id):
             new_xx = pd.DataFrame(new_x)
             new_feature = pd.concat([new_xx, y], axis=1, join='outer')
             global_dict[session_id]['new_feature'] = new_feature
+
+            # global_dict[session_id].pop('feature_table') #每次载入后，都将这些特征删除，否则影响下一次载入
             return [html.Div([html.H4(children=translate[global_dict[session_id]['language']]['Feature_Visualization'],
                     style={'textAlign': 'center', 'font-size': '2.0rem'}),
                     html.Div(generate_table(df, session_id, 2, 2))])]
