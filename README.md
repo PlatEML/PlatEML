@@ -2,12 +2,18 @@
 
 演化机器学习（EML）算法是一个具有大量现有成果的新兴领域。为了促进EML的发展，我们开发了一个平台，允许任何人使用EML算法而不需要代码。
 
+## 技术栈
+
+Dash+Python
+
+Dash是一个高效简洁的Python框架，建立在Flask、Poltly.js以及React.js的基础上，将现代 UI 元素（如下拉列表、滑块和图形）与 Python 相结合，它最重要的特点是完美集成Python数据科学生态，灵活而强大。
+
 ## 算法
 
 这个软件包主要是为EML技术提供一个对用户友好的平台。它包括以下算法：
 
 * 演化特征构造
-    
+  
     * [**Evolutionary Forest**](https://ieeexplore.ieee.org/document/9656554)
     
       [论文解析](https://www.zhihu.com/question/367337608/answer/2287992641)

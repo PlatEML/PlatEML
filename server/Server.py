@@ -299,7 +299,7 @@ def server_layout():
     # global layout
     session_id = str(uuid.uuid4())
     print('session_id', session_id)
-    global_dict[session_id]['language'] = 'english'
+    global_dict[session_id]['language'] = 'chinese'
     return html.Div([ html.Div(session_id, id='session-id', style={'display': 'none'}), dcc.Location(id='redirect-url'), html.Div(id="app-container")])
 @app.callback(
     [
