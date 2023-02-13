@@ -703,13 +703,15 @@ def update_test(isCompleted, fileNames, session_id):
                 return html.Div(children=translate[global_dict[session_id]['language']]['Error_numeric']), ''
         global_dict[session_id]['global_test'] = df
         flag = 0
+        # print(global_dict[session_id]['global_data'].shape[1], df.shape[1])
+        df.insert(0, f"{translate[global_dict[session_id]['language']]['Number']}", np.arange(0, len(df)))
         if global_dict[session_id]['global_data'].shape[1] == df.shape[1]:
             flag = 2
         elif global_dict[session_id]['global_data'].shape[1] == df.shape[1]+1:
             flag = 1
         else:
             return html.Div(children=translate[global_dict[session_id]['language']]['Error_feature']), ''
-        data = test_predict(df, global_dict[session_id]['training_infos']['gp'], flag, session_id, global_dict[session_id]['language'])
+        data = test_predict(df, global_dict[session_id]['training_infos']['gp'], flag, global_dict[session_id]['language'])
         #每次新上传数据，删掉之前ef训练的特征
         if 'feature_table' in global_dict[session_id]:
             global_dict[session_id].pop('feature_table')
